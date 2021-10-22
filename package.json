@@ -1,0 +1,19 @@
+{
+  "name": "ticity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "npx nodemon ./src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongodb": "^2.1.16",
+    "nodemon": "^2.0.14",
+    "nodeshift": "^8.6.0"
+  },
+  "devDependencies": {}
+}
