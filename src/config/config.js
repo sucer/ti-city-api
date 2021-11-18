@@ -1,13 +1,14 @@
-let port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
-    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
-    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
+let port = process.env.PORT || process.env.APP_PORT || 8080,
+    ip   = process.env.IP   || process.env.APP_IP || '0.0.0.0',
+    mongoURL = process.env.MONGODB_URL || process.env.MONGO_URI,
     mongoURLLabel = "";
+let serviceName = "mongodb";
 
 if (mongoURL == null) {
   var mongoHost, mongoPort, mongoDatabase, mongoPassword, mongoUser;
   // If using plane old env vars via service discovery
-  if (process.env.DATABASE_SERVICE_NAME) {
-    var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase();
+  if (serviceName) {
+    var mongoServiceName = serviceName.toUpperCase();
     mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'];
     mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'];
     mongoDatabase = process.env[mongoServiceName + '_DATABASE'];
@@ -39,7 +40,6 @@ if (mongoURL == null) {
     mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
   }
 }
-
 process.env.PORT = port;
 process.env.IP_NODEAPP = ip;
 process.env.MONGO_URI = mongoURL;

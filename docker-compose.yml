@@ -19,17 +19,16 @@ services:
       context: ./
       dockerfile: ./Dockerfile
     environment:
-      DATABASE_SERVICE_NAME: "mongodb"
       MONGODB_SERVICE_HOST: "mongo"
       MONGODB_SERVICE_PORT: "27017"
       MONGODB_DATABASE: "ticity"
       #MONGODB_PASSWORD: "toor"
       #MONGODB_USER: "root"
-      OPENSHIFT_NODEJS_PORT: "3000"
-      OPENSHIFT_NODEJS_IP: "0.0.0.0"
-      #OPENSHIFT_MONGODB_DB_URL: mongodb+srv://usuario1:prueba123@cluster0.tvtub.mongodb.net/test
+      APP_PORT: "3000"
+      APP_IP: "0.0.0.0"
+      #MONGODB_URI: mongodb+srv://usuario1:prueba123@cluster0.tvtub.mongodb.net/test
     volumes:
-      - ./:/app/:rw
+      - ./src:/app/:rw
       - node_modules:/app/node_modules
       
     ports: 
